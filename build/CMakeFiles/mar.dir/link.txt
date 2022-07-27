@@ -1,2 +1,0 @@
-/usr/bin/ar qc libmar.a CMakeFiles/mar.dir/src/AsciiStreamReader.cpp.o CMakeFiles/mar.dir/src/AsciiLineReader.cpp.o
-/usr/bin/ranlib libmar.a
