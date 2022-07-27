@@ -1,0 +1,3 @@
+/home/karl/git/minimal-ascii-reader/build/CMakeFiles/mar.dir
+/home/karl/git/minimal-ascii-reader/build/CMakeFiles/edit_cache.dir
+/home/karl/git/minimal-ascii-reader/build/CMakeFiles/rebuild_cache.dir
