@@ -1,12 +1,11 @@
 # mar: Minimal ASCII reader for C++
 # licence: Apache, see LICENCE file
-# file: AsciiStreamReader.cpp - AsciiStreamReader class implementation
+# file: CMakeLists.txt - main cmake configuration file
 # author: Karl-Mihkel Ott
 
 cmake_minimum_required(VERSION 3.10)
 project(mar LANGUAGES CXX)
 
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_GENERATOR_PLATFORM x64)
 
