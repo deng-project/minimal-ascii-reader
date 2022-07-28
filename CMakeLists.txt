@@ -7,7 +7,6 @@ cmake_minimum_required(VERSION 3.10)
 project(mar LANGUAGES CXX)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-set(CMAKE_GENERATOR_PLATFORM x64)
 
 # Set appropriate compiler flags
 if(MSVC)
