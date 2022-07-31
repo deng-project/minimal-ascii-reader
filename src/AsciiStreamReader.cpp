@@ -58,9 +58,9 @@ namespace MAR {
         }
 
         std::vector<size_t> occurances;
-        occurances.reserve(m_buffer_size / m_end.size() > 0 ? 
-                           m_buffer_size / m_end.size() : 1); // assuming the worst case memory usage
-        for(size_t i = 0, j = 0; i < m_end.size(); i++) {
+        occurances.reserve(m_last_read / m_end.size() > 0 ? 
+                           m_last_read / m_end.size() : 1); // assuming the worst case memory usage
+        for(size_t i = 0, j = 0; i < m_last_read; i++) {
             // fallback on invalid values
             while(j > 0 && m_buffer[i] != m_end[j])
                 j = lsp[j - 1];
@@ -108,7 +108,7 @@ namespace MAR {
             std::string endstr = m_end;
             char e = m_end.back();
 
-            size_t offset = m_buffer_size - 1;
+            size_t offset = m_last_read - 1;
             bool is_partial_match = true;
             while(endstr.size()) {
                 if(m_buffer[offset] == e) {
@@ -124,8 +124,8 @@ namespace MAR {
             }
 
             if(is_partial_match) {
-                int64_t back = m_buffer_size - offset - 1;
-                m_last_read = m_buffer_size - back;
+                int64_t back = m_last_read - offset - 1;
+                m_last_read = m_last_read - back;
                 m_stream.seekg(-back, std::ios_base::cur);
             }
         }
