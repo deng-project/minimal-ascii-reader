@@ -28,12 +28,16 @@ else()
     endif()
 endif()
 
+if(CMAKE_BUILD_TYPE MATCHES Debug)
+    add_compile_definitions(_DEBUG)
+endif()
+
 # Build libmar target
 set(LIBMAR_TARGET mar)
 set(LIBMAR_HEADERS
-    include/AsciiLineReader.h
-    include/AsciiStreamReader.h
-    include/MARAssert.h)
+    include/mar/AsciiLineReader.h
+    include/mar/AsciiStreamReader.h
+    include/mar/MARAssert.h)
 
 set(LIBMAR_SOURCES 
     src/AsciiStreamReader.cpp
@@ -43,4 +47,4 @@ add_library(${LIBMAR_TARGET} STATIC
     ${LIBMAR_HEADERS}
     ${LIBMAR_SOURCES})
 
-target_include_directories(${LIBMAR_TARGET} PUBLIC include)
+target_include_directories(${LIBMAR_TARGET} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)

@@ -4,7 +4,7 @@
 // author: Karl-Mihkel Ott
 
 #define ASCII_LINE_READER_CPP
-#include "AsciiLineReader.h"
+#include "mar/AsciiLineReader.h"
 
 namespace MAR {
     AsciiLineReader::AsciiLineReader(const std::string &_file_name, size_t _chunk_size, const std::string &_end) :

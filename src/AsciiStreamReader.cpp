@@ -4,7 +4,7 @@
 // author: Karl-Mihkel Ott
 
 #define ASCII_STREAM_READER_CPP
-#include <AsciiStreamReader.h>
+#include "mar/AsciiStreamReader.h"
 
 
 namespace MAR {

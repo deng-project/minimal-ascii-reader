@@ -6,9 +6,13 @@
 #ifndef MAR_ASSERT_H
 #define MAR_ASSERT_H
 
-#include <cassert>
 #include <iostream>
 
-#define MAR_ASSERT(_v) { if(!(_v)) std::cerr << "Assertion failed in '" << __FILE__ << "', line " << __LINE__ << std::endl, std::abort(); }
+#ifdef _DEBUG
+    #include <cassert>
+    #define MAR_ASSERT(_val) assert(_val)
+#else
+    #define MAR_ASSERT(_val)
+#endif
 
 #endif
