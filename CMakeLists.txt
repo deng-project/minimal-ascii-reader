@@ -29,7 +29,7 @@ else()
 endif()
 
 if(CMAKE_BUILD_TYPE MATCHES Debug)
-    add_compile_definitions(_DEBUG)
+    add_compile_definitions(__DEBUG)
 endif()
 
 # Build libmar target

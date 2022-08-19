@@ -8,7 +8,7 @@
 
 #include <iostream>
 
-#ifdef _DEBUG
+#ifdef __DEBUG
     #include <cassert>
     #define MAR_ASSERT(_val) assert(_val)
 #else
