@@ -69,6 +69,13 @@ namespace MAR {
              */
             char *_GetReadPtr();
             /**
+             * Verify if the read is possible in current buffer bounds
+             * @param _read specifies the read size
+             */
+            inline uint64_t _VerifyRead(size_t _read) {
+                return (m_rd_ptr - m_buffer + _read) < m_last_read ? 0 : m_rd_ptr - m_buffer + _read - m_last_read; 
+            }
+            /**
              * @return std::pair object where the first element specifies beginning of the line and second element
              * specifies the end of line
              */

@@ -78,7 +78,7 @@ namespace MAR {
     }
 
 
-    bool AsciiStreamReader::_ReadNewChunk() {
+    bool AsciiStreamReader::_ReadNewChunk(int64_t _scrollback) {
         // verify that stream is open
         MAR_ASSERT(m_stream.is_open());
             
@@ -89,14 +89,14 @@ namespace MAR {
 
         // clear the buffer and refill it with new data from stream
         std::memset(m_buffer, 0, m_buffer_size);
+        // scrollback the stream if needed
+        if(_scrollback) 
+            m_stream.seekg(-_scrollback, std::ios_base::cur);
         m_stream.read(m_buffer, m_last_read);
-
-        read_bytes = m_stream.tellg();
 
         // using backwards KMP substring search algorithm
         std::vector<size_t> instances = _KMP_FindEndStringInstances();
 
-        int64_t back = 0;
         if(instances.size()) {
             int64_t back = static_cast<int64_t>(instances.back()) + static_cast<int64_t>(m_end.size()) - 
                            static_cast<int64_t>(m_last_read);
@@ -124,15 +124,12 @@ namespace MAR {
             }
 
             if(is_partial_match) {
-                int64_t back = m_last_read - offset - 1;
-                m_last_read = m_last_read - back;
+                int64_t back = m_last_read - offset;
+                m_last_read -= back;
                 m_stream.seekg(-back, std::ios_base::cur);
             }
         }
 
-        if(back) {
-            m_last_read -= back;
-        }
         return true;
     }
 
@@ -141,7 +138,7 @@ namespace MAR {
         // check if stream was previously opened, and if it was, close it
         CloseFile();
 
-        m_buffer = new char[m_buffer_size]{};
+        m_buffer = new char[m_buffer_size+1]{};
         m_stream.open(_file_name, std::ios::binary);
 
         if(!m_stream.is_open() || !m_stream.good()) {

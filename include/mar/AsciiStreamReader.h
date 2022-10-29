@@ -42,7 +42,7 @@ namespace MAR {
              * Read new buffer chunk from the stream
              * @return true if new chunk value was read
              */
-            bool _ReadNewChunk();
+            bool _ReadNewChunk(int64_t _scrollback = 0);
             /**
              * Get the current stream reading std::ifstream reference 
              * @return reference to std::ifstream 
